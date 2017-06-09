@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace = "buy">
+
+
+  <insert id="create" parameterType="BuyVO">
+    INSERT INTO buy(payno, cartno, itemno, cnt, price, rdate)
+    VALUES(#{payno}, #{cartno}, #{itemno}, #{cnt}, #{price}, now())
+  </insert>
+  
+<!--   <select id="list" resultType="Member_ReviewVO" >
+    SELECT r.reviewno, r.productno, r.mno, r.title, r.content, r.passwd, r.cnt, r.grade, r.rdate,
+              m.mno, m.id            
+    FROM member m, review r
+    WHERE m.mno = r.mno
+    ORDER BY r.reviewno ASC
+  </select>
+  
+  <select id="read" resultType="ReviewVO" >
+    SELECT reviewno, productno, mno, title, content, passwd, thumb, file1, size1, cnt, grade, rdate, ip
+    FROM review
+    WHERE reviewno = #{reviewno}
+  </select>
+  
+  <update id="update" parameterType="ReviewVO">
+    UPDATE review 
+    SET mno=#{mno}, title=#{title}, content=#{content}, grade=#{grade}, productno=#{productno}, thumb=#{thumb}, file1=#{file1}, size1=#{size1}
+    WHERE reviewno=#{reviewno}
+  </update>    
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM review
+    WHERE reviewno=#{reviewno}
+  </delete>  
+   
+  조회수 증가 
+  <update id="update_cnt" parameterType="int">
+    UPDATE review 
+    SET cnt = cnt + 1
+    WHERE reviewno=#{reviewno}
+  </update>  --> 
+  
+</mapper> 

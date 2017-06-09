@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace = "pay">
+
+
+  <insert id="create" parameterType="PayVO">
+    INSERT INTO pay(mno, mycardno, rname, tel, zipcode, address1, address2, total, rdate)
+    VALUES(#{mno}, #{mycardno}, #{rname}, #{tel}, #{zipcode}, #{address1}, #{address2}, #{total}, now())
+  </insert>
+  
+  <select id="list" resultType="PayVO" parameterType="int">
+    SELECT payno, mno, mycardno, rname, tel, zipcode, address1, address2, total, rdate
+    FROM pay
+    WHERE mno = #{mno}
+    ORDER BY payno DESC
+  </select>
+  
+  <select id="list_all" resultType="PayVO">
+    SELECT payno, mno, mycardno, rname, tel, zipcode, address1, address2, total, rdate
+    FROM pay
+    ORDER BY payno DESC
+  </select>
+   
+  <delete id="delete" parameterType="int">
+    DELETE FROM pay
+    WHERE payno=#{payno}
+  </delete> 
+  
+  <select id="read" resultType="PayVO">
+    SELECT payno, mycardno, rname, tel, zipcode, address1, address2, total, rdate
+    FROM pay
+    WHERE payno = #{payno}
+    ORDER BY payno ASC
+  </select>
+  
+  <update id="update" parameterType="PayVO">
+    UPDATE pay
+    SET mycardno = #{mycardno}, rname = #{rname}, tel = #{tel}, zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}, total = #{total}
+    WHERE payno = #{payno}
+  </update>    
+
+</mapper> 

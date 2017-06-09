@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace = "mycard">
+
+ <insert id="create" parameterType="MycardVO">
+    INSERT INTO mycard(mno, cname, money, rdate, mdate)
+    VALUES(#{mno}, #{cname}, #{money}, now(), now())
+  </insert>
+  
+  <select id="list" resultType="MycardVO" parameterType="int">
+    SELECT mycardno, mno, cname, money, rdate, mdate
+    FROM mycard
+    WHERE mno = #{mno}
+    ORDER BY mycardno ASC
+  </select>
+  
+  <select id="list_all" resultType="MycardVO">
+    SELECT mycardno, mno, cname, money, rdate, mdate
+    FROM mycard
+    ORDER BY mycardno ASC
+  </select>
+   
+  <delete id="delete" parameterType="int">
+    DELETE FROM mycard
+    WHERE mycardno=#{mycardno}
+  </delete> 
+  
+  <select id="read" resultType="MycardVO">
+    SELECT mycardno, mno, cname, money, rdate, mdate
+    FROM mycard
+    WHERE mycardno = #{mycardno}
+    ORDER BY mycardno ASC
+  </select>
+  
+  <update id="update" parameterType="MycardVO">
+    UPDATE mycard
+    SET cname=#{cname}
+    WHERE mycardno = #{mycardno}
+  </update>    
+  
+  <!-- 잔액조정 -->
+  <update id="update_money" parameterType="MycardVO">
+    UPDATE mycard
+    SET money = #{money}, mdate=now()
+    WHERE mycardno = #{mycardno}
+  </update>
+</mapper>
